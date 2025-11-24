@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, Instagram, Youtube, MapPin } from 'lucide-react';
+import { Phone, Mail, Instagram, Youtube, MapPin, MessageCircle } from 'lucide-react';
 
 const Contact = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        phone: '',
+        email: '',
+        message: ''
+    });
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Format the message for WhatsApp
+        const whatsappMessage = `Hi, I'm ${formData.name}%0A%0APhone: ${formData.phone}%0AEmail: ${formData.email}%0A%0AMessage: ${formData.message}`;
+
+        // Open WhatsApp with pre-filled message
+        window.open(`https://wa.link/qcxpl4?text=${whatsappMessage}`, '_blank');
+    };
+
     return (
         <section id="contact" className="py-20 bg-zinc-900 text-white">
             <div className="container mx-auto px-6">
@@ -34,7 +58,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <p className="text-sm text-zinc-500 uppercase">Phone</p>
-                                        <p className="text-lg">+91 98765 43210</p>
+                                        <p className="text-lg">+91 99209 93068</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center">
@@ -43,7 +67,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <p className="text-sm text-zinc-500 uppercase">Email</p>
-                                        <p className="text-lg">contact@verticore.com</p>
+                                        <p className="text-lg">jayeshgosaviyt@gmail.com</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center">
@@ -60,8 +84,11 @@ const Contact = () => {
                             <div className="mt-10">
                                 <h4 className="text-sm text-zinc-500 uppercase mb-4">Follow Us</h4>
                                 <div className="flex space-x-4">
-                                    <a href="#" className="w-10 h-10 bg-zinc-800 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition-colors">
+                                    <a href="https://www.instagram.com/_verticore_/reels/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-zinc-800 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition-colors">
                                         <Instagram className="w-5 h-5" />
+                                    </a>
+                                    <a href="https://wa.link/qcxpl4" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-zinc-800 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition-colors">
+                                        <MessageCircle className="w-5 h-5" />
                                     </a>
                                     <a href="#" className="w-10 h-10 bg-zinc-800 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition-colors">
                                         <Youtube className="w-5 h-5" />
@@ -78,27 +105,60 @@ const Contact = () => {
                         viewport={{ once: true }}
                         className="md:w-1/2"
                     >
-                        <form className="space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-sm text-zinc-500 uppercase mb-2">Name</label>
-                                    <input type="text" className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none transition-colors" placeholder="Your Name" />
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none transition-colors"
+                                        placeholder="Your Name"
+                                    />
                                 </div>
                                 <div>
                                     <label className="block text-sm text-zinc-500 uppercase mb-2">Phone</label>
-                                    <input type="text" className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none transition-colors" placeholder="Your Number" />
+                                    <input
+                                        type="text"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none transition-colors"
+                                        placeholder="Your Number"
+                                    />
                                 </div>
                             </div>
                             <div>
                                 <label className="block text-sm text-zinc-500 uppercase mb-2">Email</label>
-                                <input type="email" className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none transition-colors" placeholder="Your Email" />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none transition-colors"
+                                    placeholder="Your Email"
+                                />
                             </div>
                             <div>
                                 <label className="block text-sm text-zinc-500 uppercase mb-2">Message</label>
-                                <textarea rows="4" className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none transition-colors" placeholder="Tell us about your project"></textarea>
+                                <textarea
+                                    rows="4"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none transition-colors"
+                                    placeholder="Tell us about your project"
+                                ></textarea>
                             </div>
-                            <button type="submit" className="w-full py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors">
-                                Send Message
+                            <button type="submit" className="w-full py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                                <MessageCircle className="w-5 h-5" />
+                                Send via WhatsApp
                             </button>
                         </form>
                     </motion.div>

@@ -45,8 +45,8 @@ const Packages = () => {
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
                                 className={`px-4 py-2 text-sm uppercase tracking-wider border transition-all duration-300 ${activeCategory === cat
-                                        ? 'bg-white text-black border-white'
-                                        : 'bg-transparent text-white/60 border-white/20 hover:border-white hover:text-white'
+                                    ? 'bg-white text-black border-white'
+                                    : 'bg-transparent text-white/60 border-white/20 hover:border-white hover:text-white'
                                     }`}
                             >
                                 {cat}
@@ -75,7 +75,13 @@ const Packages = () => {
                                         </li>
                                     ))}
                                 </ul>
-                                <button className="w-full py-3 border border-white text-white hover:bg-white hover:text-black transition-colors uppercase tracking-widest text-sm font-medium">
+                                <button
+                                    onClick={() => {
+                                        const message = `Hi, I'm interested in the ${pkg.name} package for ${activeCategory}.%0A%0ACould you please provide more details?`;
+                                        window.open(`https://wa.link/qcxpl4?text=${message}`, '_blank');
+                                    }}
+                                    className="w-full py-3 border border-white text-white hover:bg-white hover:text-black transition-colors uppercase tracking-widest text-sm font-medium"
+                                >
                                     Inquire Now
                                 </button>
                             </motion.div>
