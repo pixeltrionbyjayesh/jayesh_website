@@ -4,7 +4,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
-import BTS from './components/BTS';
+
 import Testimonials from './components/Testimonials';
 import Gear from './components/Gear';
 import Packages from './components/Packages';
@@ -17,11 +17,11 @@ function App() {
       <Navbar />
       <Hero />
       <About />
-      <Services />
       <Portfolio />
-      <BTS />
-      <Testimonials />
       <Gear />
+      <Services />
+
+      <Testimonials />
       <Packages />
       <Contact />
       <Footer />

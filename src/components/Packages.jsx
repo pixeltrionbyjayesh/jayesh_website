@@ -28,8 +28,13 @@ const Packages = () => {
     const [activeCategory, setActiveCategory] = useState("Weddings");
 
     return (
-        <section id="packages" className="py-20 bg-black text-white">
-            <div className="container mx-auto px-6">
+        <section id="packages" className="py-20 bg-black text-white relative overflow-hidden">
+            {/* Background Elements */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-[#fe564a]/10 rounded-full blur-3xl"></div>
+            </div>
+
+            <div className="container mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -37,16 +42,19 @@ const Packages = () => {
                     className="text-center mb-12"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">Packages</h2>
-                    <div className="w-20 h-1 bg-white mx-auto mb-8"></div>
+                    <div className="w-20 h-1 bg-gradient-to-r from-[#fe564a] to-[#ff8a7a] mx-auto mb-4"></div>
+                    <p className="text-gray-400 max-w-2xl mx-auto mb-8">
+                        Flexible packages designed to fit your needs and budget
+                    </p>
 
-                    <div className="flex flex-wrap justify-center gap-4 mb-12">
+                    <div className="flex flex-wrap justify-center gap-3 mb-12">
                         {Object.keys(packagesData).map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
-                                className={`px-4 py-2 text-sm uppercase tracking-wider border transition-all duration-300 ${activeCategory === cat
-                                    ? 'bg-white text-black border-white'
-                                    : 'bg-transparent text-white/60 border-white/20 hover:border-white hover:text-white'
+                                className={`px-6 py-2.5 text-sm uppercase tracking-wider border-2 transition-all duration-300 ${activeCategory === cat
+                                        ? 'bg-gradient-to-r from-[#fe564a] to-[#ff7a66] text-white border-[#fe564a] shadow-lg shadow-[#fe564a]/30'
+                                        : 'bg-transparent text-[#FBFAFC]/60 border-zinc-700 hover:border-[#fe564a] hover:text-[#FBFAFC]'
                                     }`}
                             >
                                 {cat}
@@ -64,13 +72,16 @@ const Packages = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
                                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                                className="bg-zinc-900 p-8 border border-zinc-800 hover:border-white/50 transition-all duration-300 flex flex-col"
+                                whileHover={{ y: -8, scale: 1.02 }}
+                                className="group bg-gradient-to-br from-zinc-900 to-black p-8 border border-zinc-800 hover:border-[#fe564a]/50 transition-all duration-300 flex flex-col rounded-lg"
                             >
-                                <h3 className="text-2xl font-bold uppercase mb-6 text-center">{pkg.name}</h3>
+                                <h3 className="text-2xl font-bold uppercase mb-6 text-center text-[#FBFAFC] group-hover:text-[#fe564a] transition-colors">
+                                    {pkg.name}
+                                </h3>
                                 <ul className="space-y-4 mb-8 flex-grow">
                                     {pkg.features.map((feature, idx) => (
                                         <li key={idx} className="flex items-start text-gray-300 text-sm">
-                                            <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
+                                            <Check className="w-5 h-5 text-[#fe564a] mr-3 flex-shrink-0" />
                                             {feature}
                                         </li>
                                     ))}
@@ -80,7 +91,7 @@ const Packages = () => {
                                         const message = `Hi, I'm interested in the ${pkg.name} package for ${activeCategory}.%0A%0ACould you please provide more details?`;
                                         window.open(`https://wa.link/qcxpl4?text=${message}`, '_blank');
                                     }}
-                                    className="w-full py-3 border border-white text-white hover:bg-white hover:text-black transition-colors uppercase tracking-widest text-sm font-medium"
+                                    className="w-full py-3 bg-gradient-to-r from-[#fe564a] to-[#ff7a66] text-white hover:shadow-lg hover:shadow-[#fe564a]/30 transition-all uppercase tracking-widest text-sm font-semibold"
                                 >
                                     Inquire Now
                                 </button>

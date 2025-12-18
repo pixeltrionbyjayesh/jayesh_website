@@ -12,8 +12,8 @@ const About = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold mb-8 uppercase tracking-wider">About Verticore</h2>
-                        <div className="w-20 h-1 bg-white mx-auto mb-10"></div>
+                        <h2 className="text-3xl md:text-4xl font-bold mb-8 uppercase tracking-wider">About Pixeltrion</h2>
+                        <div className="w-20 h-1 bg-[#fe564a] mx-auto mb-10"></div>
                     </motion.div>
 
                     <motion.div
@@ -23,7 +23,7 @@ const About = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-light">
-                            Verticore is led by <span className="text-white font-medium">Jayesh</span>, a cinematographer and video editor specializing in weddings, festival events, baby showers, lifestyle deliveries, and high-energy reels. His work blends <span className="text-white font-medium">cinematic movement</span>, <span className="text-white font-medium">clean framing</span>, and <span className="text-white font-medium">fast-paced edits</span> that elevate everyday events into premium visual stories.
+                            Pixeltrion is led by <span className="text-[#fe564a] font-medium">Jayesh</span>, a cinematographer and video editor specializing in weddings, festival events, baby showers, lifestyle deliveries, and high-energy reels. His work blends <span className="text-[#fe564a] font-medium">cinematic movement</span>, <span className="text-[#fe564a] font-medium">clean framing</span>, and <span className="text-[#fe564a] font-medium">fast-paced edits</span> that elevate everyday events into premium visual stories.
                         </p>
                     </motion.div>
                 </div>

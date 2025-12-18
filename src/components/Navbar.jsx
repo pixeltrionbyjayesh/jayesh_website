@@ -26,7 +26,7 @@ const Navbar = () => {
         <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}>
             <div className="container mx-auto px-6 flex justify-between items-center">
                 <a href="#home" className="flex items-center">
-                    <img src="https://ik.imagekit.io/verticore/Verticore%20(4)%20(1).png" alt="Verticore" className="h-10 md:h-12 object-contain mix-blend-screen" />
+                    <img src="https://ik.imagekit.io/verticore/Untitled-1%20(2).png" alt="Pixeltrion" className="h-10 md:h-12 object-contain rounded-[20%]" />
                 </a>
 
                 {/* Desktop Menu */}

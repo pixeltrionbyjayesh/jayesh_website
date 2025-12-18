@@ -1,168 +1,128 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, Instagram, Youtube, MapPin, MessageCircle } from 'lucide-react';
+import { Mail, Instagram, Youtube, MapPin, MessageCircle, Send } from 'lucide-react';
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        phone: '',
-        email: '',
-        message: ''
-    });
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // Format the message for WhatsApp
-        const whatsappMessage = `Hi, I'm ${formData.name}%0A%0APhone: ${formData.phone}%0AEmail: ${formData.email}%0A%0AMessage: ${formData.message}`;
-
-        // Open WhatsApp with pre-filled message
-        window.open(`https://wa.link/qcxpl4?text=${whatsappMessage}`, '_blank');
-    };
+    const contactButtons = [
+        {
+            icon: MessageCircle,
+            label: 'WhatsApp',
+            description: 'Chat with us instantly',
+            link: 'https://wa.link/qcxpl4',
+            gradient: 'from-green-500 to-emerald-600',
+            hoverGradient: 'hover:from-green-600 hover:to-emerald-700'
+        },
+        {
+            icon: Mail,
+            label: 'Email',
+            description: 'jayeshgosaviyt@gmail.com',
+            link: 'mailto:jayeshgosaviyt@gmail.com',
+            gradient: 'from-blue-500 to-cyan-600',
+            hoverGradient: 'hover:from-blue-600 hover:to-cyan-700'
+        },
+        {
+            icon: Instagram,
+            label: 'Instagram',
+            description: 'Follow our creative journey',
+            link: 'https://www.instagram.com/pixeltrion/',
+            gradient: 'from-pink-500 to-purple-600',
+            hoverGradient: 'hover:from-pink-600 hover:to-purple-700'
+        },
+        {
+            icon: Youtube,
+            label: 'YouTube',
+            description: 'Watch our portfolio',
+            link: '#',
+            gradient: 'from-red-500 to-rose-600',
+            hoverGradient: 'hover:from-red-600 hover:to-rose-700'
+        }
+    ];
 
     return (
-        <section id="contact" className="py-20 bg-zinc-900 text-white">
-            <div className="container mx-auto px-6">
+        <section id="contact" className="py-20 bg-black text-white relative overflow-hidden">
+            {/* Background gradient effects */}
+            <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-black to-zinc-900 opacity-50"></div>
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#fe564a]/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#fe564a]/10 rounded-full blur-3xl"></div>
+
+            <div className="container mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">Get In Touch</h2>
-                    <div className="w-20 h-1 bg-white mx-auto mb-6"></div>
-                    <p className="text-gray-400">Ready to create something cinematic? Let's talk.</p>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-wider">Let's Connect</h2>
+                    <div className="w-20 h-1 bg-gradient-to-r from-[#fe564a] to-[#ff8a7a] mx-auto mb-6"></div>
+                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                        Ready to create something cinematic? Choose your preferred way to reach out.
+                    </p>
                 </motion.div>
 
-                <div className="flex flex-col md:flex-row gap-12 max-w-6xl mx-auto">
-                    {/* Contact Info */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="md:w-1/2 space-y-8"
-                    >
-                        <div className="bg-black p-8 border border-zinc-800">
-                            <h3 className="text-2xl font-bold uppercase mb-6">Contact Info</h3>
-                            <div className="space-y-6">
-                                <div className="flex items-center">
-                                    <div className="w-10 h-10 bg-zinc-800 flex items-center justify-center rounded-full mr-4">
-                                        <Phone className="w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-zinc-500 uppercase">Phone</p>
-                                        <p className="text-lg">+91 99209 93068</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center">
-                                    <div className="w-10 h-10 bg-zinc-800 flex items-center justify-center rounded-full mr-4">
-                                        <Mail className="w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-zinc-500 uppercase">Email</p>
-                                        <p className="text-lg">jayeshgosaviyt@gmail.com</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center">
-                                    <div className="w-10 h-10 bg-zinc-800 flex items-center justify-center rounded-full mr-4">
-                                        <MapPin className="w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-zinc-500 uppercase">Location</p>
-                                        <p className="text-lg">Mumbai, India</p>
-                                    </div>
-                                </div>
-                            </div>
+                {/* Location Info */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    className="flex items-center justify-center gap-3 mb-12"
+                >
+                    <MapPin className="w-5 h-5 text-gray-400" />
+                    <p className="text-gray-400 text-lg">Based in Mumbai, India</p>
+                </motion.div>
 
-                            <div className="mt-10">
-                                <h4 className="text-sm text-zinc-500 uppercase mb-4">Follow Us</h4>
-                                <div className="flex space-x-4">
-                                    <a href="https://www.instagram.com/_verticore_/reels/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-zinc-800 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition-colors">
-                                        <Instagram className="w-5 h-5" />
-                                    </a>
-                                    <a href="https://wa.link/qcxpl4" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-zinc-800 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition-colors">
-                                        <MessageCircle className="w-5 h-5" />
-                                    </a>
-                                    <a href="#" className="w-10 h-10 bg-zinc-800 flex items-center justify-center rounded-full hover:bg-white hover:text-black transition-colors">
-                                        <Youtube className="w-5 h-5" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
+                {/* Contact Buttons Grid */}
+                <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {contactButtons.map((button, index) => {
+                        const Icon = button.icon;
+                        return (
+                            <motion.a
+                                key={button.label}
+                                href={button.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                whileHover={{ scale: 1.02, y: -5 }}
+                                whileTap={{ scale: 0.98 }}
+                                className={`group relative bg-gradient-to-br ${button.gradient} ${button.hoverGradient} p-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden`}
+                            >
+                                {/* Shine effect */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
-                    {/* Contact Form */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="md:w-1/2"
-                    >
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-sm text-zinc-500 uppercase mb-2">Name</label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none transition-colors"
-                                        placeholder="Your Name"
-                                    />
+                                <div className="relative z-10 flex items-center gap-6">
+                                    <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                                        <Icon className="w-8 h-8 text-white" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="text-2xl font-bold text-white mb-1 uppercase tracking-wide">
+                                            {button.label}
+                                        </h3>
+                                        <p className="text-white/90 text-sm">
+                                            {button.description}
+                                        </p>
+                                    </div>
+                                    <Send className="w-6 h-6 text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all" />
                                 </div>
-                                <div>
-                                    <label className="block text-sm text-zinc-500 uppercase mb-2">Phone</label>
-                                    <input
-                                        type="text"
-                                        name="phone"
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none transition-colors"
-                                        placeholder="Your Number"
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <label className="block text-sm text-zinc-500 uppercase mb-2">Email</label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none transition-colors"
-                                    placeholder="Your Email"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm text-zinc-500 uppercase mb-2">Message</label>
-                                <textarea
-                                    rows="4"
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full bg-black border border-zinc-800 p-3 text-white focus:border-white outline-none transition-colors"
-                                    placeholder="Tell us about your project"
-                                ></textarea>
-                            </div>
-                            <button type="submit" className="w-full py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
-                                <MessageCircle className="w-5 h-5" />
-                                Send via WhatsApp
-                            </button>
-                        </form>
-                    </motion.div>
+                            </motion.a>
+                        );
+                    })}
                 </div>
+
+                {/* Additional CTA */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.6 }}
+                    className="text-center mt-16"
+                >
+                    <p className="text-gray-500 text-sm uppercase tracking-widest">
+                        Available for projects worldwide
+                    </p>
+                </motion.div>
             </div>
         </section>
     );

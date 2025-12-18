@@ -26,8 +26,13 @@ const Portfolio = () => {
         : portfolioItems.filter(item => item.category === activeCategory);
 
     return (
-        <section id="portfolio" className="py-20 bg-black text-white">
-            <div className="container mx-auto px-6">
+        <section id="portfolio" className="py-20 bg-zinc-900 text-white relative overflow-hidden">
+            {/* Background Elements */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-[#fe564a]/10 rounded-full blur-3xl"></div>
+            </div>
+
+            <div className="container mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -35,17 +40,20 @@ const Portfolio = () => {
                     className="text-center mb-12"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">Selected Works</h2>
-                    <div className="w-20 h-1 bg-white mx-auto mb-8"></div>
+                    <div className="w-20 h-1 bg-gradient-to-r from-[#fe564a] to-[#ff8a7a] mx-auto mb-4"></div>
+                    <p className="text-gray-400 max-w-2xl mx-auto mb-8">
+                        A curated collection of our finest cinematic creations
+                    </p>
 
                     {/* Category Filter */}
-                    <div className="flex flex-wrap justify-center gap-4 mb-12">
+                    <div className="flex flex-wrap justify-center gap-3 mb-12">
                         {categories.map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
-                                className={`px-4 py-2 text-sm uppercase tracking-wider border transition-all duration-300 ${activeCategory === cat
-                                    ? 'bg-white text-black border-white'
-                                    : 'bg-transparent text-white/60 border-white/20 hover:border-white hover:text-white'
+                                className={`px-6 py-2.5 text-sm uppercase tracking-wider border-2 transition-all duration-300 ${activeCategory === cat
+                                    ? 'bg-gradient-to-r from-[#fe564a] to-[#ff7a66] text-white border-[#fe564a] shadow-lg shadow-[#fe564a]/30'
+                                    : 'bg-transparent text-[#FBFAFC]/60 border-zinc-700 hover:border-[#fe564a] hover:text-[#FBFAFC]'
                                     }`}
                             >
                                 {cat}
@@ -64,7 +72,8 @@ const Portfolio = () => {
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ duration: 0.3 }}
                                 key={item.id}
-                                className="relative aspect-[9/16] overflow-hidden bg-zinc-900"
+                                whileHover={{ scale: 1.05 }}
+                                className="relative aspect-[9/16] overflow-hidden bg-zinc-900 rounded-lg border border-zinc-800 hover:border-[#fe564a]/50 transition-all duration-300 group"
                             >
                                 <video
                                     src={item.video}
@@ -74,6 +83,8 @@ const Portfolio = () => {
                                     playsInline
                                     className="w-full h-full object-cover"
                                 />
+                                {/* Overlay on hover */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#fe564a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </motion.div>
                         ))}
                     </AnimatePresence>
