@@ -92,19 +92,19 @@ const Contact = () => {
                                 {/* Shine effect */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
-                                <div className="relative z-10 flex items-center gap-6">
-                                    <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                                        <Icon className="w-8 h-8 text-white" />
+                                <div className="relative z-10 flex items-center gap-4">
+                                    <div className="w-14 h-14 flex-shrink-0 bg-black/40 backdrop-blur-sm rounded-xl flex items-center justify-center group-hover:bg-black/60 transition-colors border border-white/20">
+                                        <Icon className="w-7 h-7 text-white" />
                                     </div>
-                                    <div className="flex-1">
-                                        <h3 className="text-2xl font-bold text-white mb-1 uppercase tracking-wide">
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="text-xl font-bold text-white mb-0.5 uppercase tracking-wide">
                                             {button.label}
                                         </h3>
-                                        <p className="text-white/90 text-sm">
+                                        <p className="text-white/90 text-sm truncate">
                                             {button.description}
                                         </p>
                                     </div>
-                                    <Send className="w-6 h-6 text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                                    <Send className="w-5 h-5 flex-shrink-0 text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all" />
                                 </div>
                             </motion.a>
                         );
