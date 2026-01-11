@@ -5,17 +5,37 @@ const categories = [
     "All",
     "Wedding Films",
     "Festival Films",
-    "Lifestyle Events",
-    "Car Delivery",
-    "Motovlogging",
-    "Reels"
+    "Automotive"
 ];
 
 const portfolioItems = [
-    { id: 2, category: "Festival Films", title: "Ghartanpadachi Aai Mauli", image: "https://images.unsplash.com/photo-1567591414240-e2152d0a84d2?q=80&w=2874&auto=format&fit=crop", video: "https://ik.imagekit.io/verticore/video2?updatedAt=1764009576238" },
-    { id: 3, category: "Festival Films", title: "Navratri Celebration", image: "https://images.unsplash.com/photo-1567591414240-e2152d0a84d2?q=80&w=2874&auto=format&fit=crop", video: "https://ik.imagekit.io/verticore/video1?updatedAt=1764009535705" },
-    { id: 4, category: "Festival Films", title: "Shirdi Nagar Cha Raja", image: "https://images.unsplash.com/photo-1567591414240-e2152d0a84d2?q=80&w=2874&auto=format&fit=crop", video: "https://ik.imagekit.io/verticore/Shirdi%20Nagar%20Cha%20Raja%20%E2%99%A5%EF%B8%8F%20.%20@shreeboyssarvajanikutsavmandal%20.%20_maghiganeshutsav%20_ganpatibappamorya_%20_ganpatiphotography.mp4" },
-    { id: 5, category: "Festival Films", title: "Navratri Garba Night", image: "https://images.unsplash.com/photo-1567591414240-e2152d0a84d2?q=80&w=2874&auto=format&fit=crop", video: "https://ik.imagekit.io/verticore/%E0%A4%98%E0%A4%B0%E0%A4%9F%E0%A4%A8%E0%A4%AA%E0%A4%BE%E0%A4%A1%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%9A%E0%A5%80%20%E0%A4%86%E0%A4%88%20_%20%E0%A4%AE%E0%A4%BE%E0%A4%8A%E0%A4%B2%E0%A5%80%20_%20%E0%A5%A8%E0%A5%A6%E0%A5%A8%E0%A5%AB%20...%20%20_%20%E0%A4%86%E0%A4%AF%E0%A5%8B%E0%A4%9C%E0%A4%BF%E0%A4%A4%20_%20%E0%A4%95%E0%A5%88.%20%E0%A4%A8%E0%A4%B5%E0%A4%BF%E0%A4%A8%20%E0%A4%B6%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AE%20%E0%A4%B6%E0%A5%87%E0%A4%9F%E0%A5%8D%E0%A4%9F%E0%A5%80%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A4%E0%A4%BF%E0%A4%B7%E0%A5%8D%E0%A4%A0%E0%A4%BE%E0%A4%A8%20(%E0%A4%B0%E0%A4%9C%E0%A4%BF)%20.%20.%20_bhagwadhari%20_navratri%20_navratrispecial%20_jaishreeram%20_power%20_maharashtra%20_dahisar%20_garbanight%20_dailyreels%20_instagram%20_instamo.mp4" },
+    // Wedding Films - 9:16 vertical first, then 16:9 horizontal
+    { id: 1, category: "Wedding Films", title: "Wedding Film 1", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147804503?loop=1" },
+    { id: 6, category: "Wedding Films", title: "Wedding Film 2", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147804457?loop=1" },
+    { id: 7, category: "Wedding Films", title: "Wedding Film 3", aspectRatio: "16/9", image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147803886?loop=1" },
+    { id: 8, category: "Wedding Films", title: "Wedding Film 4", aspectRatio: "16/9", image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147803841?loop=1" },
+    { id: 9, category: "Wedding Films", title: "Wedding Film 5", aspectRatio: "16/9", image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147803618?loop=1" },
+
+    // Festival Films - 9:16 vertical first, then 16:9 horizontal
+    { id: 10, category: "Festival Films", title: "Festival Film 1", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1567591414240-e2152d0a84d2?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147803389?loop=1" },
+    { id: 11, category: "Festival Films", title: "Festival Film 2", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1567591414240-e2152d0a84d2?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147803798?loop=1" },
+    { id: 12, category: "Festival Films", title: "Festival Film 3", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1567591414240-e2152d0a84d2?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147803724?loop=1" },
+    { id: 14, category: "Festival Films", title: "Festival Film 5", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1567591414240-e2152d0a84d2?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147804079?loop=1" },
+    { id: 15, category: "Festival Films", title: "Festival Film 6", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1567591414240-e2152d0a84d2?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147804116?loop=1" },
+    { id: 16, category: "Festival Films", title: "Festival Film 7", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1567591414240-e2152d0a84d2?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147804151?loop=1" },
+    { id: 17, category: "Festival Films", title: "Festival Film 8", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1567591414240-e2152d0a84d2?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147804271?loop=1" },
+    { id: 13, category: "Festival Films", title: "Festival Film 4", aspectRatio: "16/9", image: "https://images.unsplash.com/photo-1567591414240-e2152d0a84d2?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147803996?loop=1" },
+
+    // Automotive - All 9:16 vertical
+    { id: 18, category: "Automotive", title: "Automotive 1", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147804332?loop=1" },
+    { id: 19, category: "Automotive", title: "Automotive 2", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147804421?loop=1" },
+    { id: 20, category: "Automotive", title: "Automotive 3", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147804389?loop=1" },
+    { id: 21, category: "Automotive", title: "Automotive 4", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147804234?loop=1" },
+    { id: 22, category: "Automotive", title: "Automotive 5", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147804192?loop=1" },
+    { id: 23, category: "Automotive", title: "Automotive 6", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147803931?loop=1" },
+    { id: 24, category: "Automotive", title: "Automotive 7", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147803757?loop=1" },
+    { id: 25, category: "Automotive", title: "Automotive 8", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147803645?loop=1" },
+    { id: 26, category: "Automotive", title: "Automotive 9", aspectRatio: "9/16", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2874&auto=format&fit=crop", video: "https://player.vimeo.com/video/1147803442?loop=1" },
 ];
 
 const Portfolio = () => {
@@ -62,7 +82,7 @@ const Portfolio = () => {
                     </div>
                 </motion.div>
 
-                <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-fr" style={{ gridAutoFlow: 'dense' }}>
                     <AnimatePresence>
                         {filteredItems.map((item) => (
                             <motion.div
@@ -70,25 +90,36 @@ const Portfolio = () => {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.3 }}
+                                transition={{ duration: 0.2 }}
                                 key={item.id}
                                 whileHover={{ scale: 1.05 }}
-                                className="relative aspect-[9/16] overflow-hidden bg-zinc-900 rounded-lg border border-zinc-800 hover:border-[#fe564a]/50 transition-all duration-300 group"
+                                className={`relative overflow-hidden bg-zinc-900 rounded-lg border border-zinc-800 hover:border-[#fe564a]/50 transition-all duration-300 group ${item.aspectRatio === '16/9' ? 'md:col-span-2' : ''
+                                    }`}
+                                style={{ aspectRatio: item.aspectRatio }}
                             >
-                                <video
-                                    src={item.video}
-                                    autoPlay
-                                    muted
-                                    loop
-                                    playsInline
-                                    className="w-full h-full object-cover"
-                                />
+                                {item.video.includes('vimeo.com') ? (
+                                    <iframe
+                                        src={item.video}
+                                        className="w-full h-full object-cover"
+                                        frameBorder="0"
+                                        allow="autoplay; fullscreen; picture-in-picture"
+                                        allowFullScreen
+                                    />
+                                ) : (
+                                    <video
+                                        src={item.video}
+                                        controls
+                                        loop
+                                        playsInline
+                                        className="w-full h-full object-cover"
+                                    />
+                                )}
                                 {/* Overlay on hover */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#fe564a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#fe564a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                             </motion.div>
                         ))}
                     </AnimatePresence>
-                </motion.div>
+                </div>
             </div>
         </section>
     );

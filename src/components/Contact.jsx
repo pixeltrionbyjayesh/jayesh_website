@@ -15,8 +15,8 @@ const Contact = () => {
         {
             icon: Mail,
             label: 'Email',
-            description: 'jayeshgosaviyt@gmail.com',
-            link: 'mailto:jayeshgosaviyt@gmail.com',
+            description: 'pixeltrionbyjayesh@gmail.com',
+            link: 'https://mail.google.com/mail/?view=cm&fs=1&to=pixeltrionbyjayesh@gmail.com',
             gradient: 'from-blue-500 to-cyan-600',
             hoverGradient: 'hover:from-blue-600 hover:to-cyan-700'
         },
@@ -32,7 +32,7 @@ const Contact = () => {
             icon: Youtube,
             label: 'YouTube',
             description: 'Watch our portfolio',
-            link: '#',
+            link: 'https://www.youtube.com/@Pixeltrionbyjayesh',
             gradient: 'from-red-500 to-rose-600',
             hoverGradient: 'hover:from-red-600 hover:to-rose-700'
         }
