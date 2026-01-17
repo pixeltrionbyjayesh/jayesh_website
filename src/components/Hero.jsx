@@ -1,145 +1,240 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate, useAnimationFrame } from 'framer-motion';
+
+import img1 from '../assets/images/conor-luddy-IVaKksEZmZA-unsplash.webp';
+import img2 from '../assets/images/deepak-rastogi-9OJ_FuqdaPM-unsplash.webp';
+import img3 from '../assets/images/kyle-loftus-DDxWBUhLkmo-unsplash.webp';
+import img4 from '../assets/images/prithiviraj-a-DD4hLcVJT00-unsplash.webp';
+import img5 from '../assets/images/reinhart-julian-WxM465oM4j4-unsplash.webp';
 
 const Hero = () => {
+    const ref = useRef(null);
+    const { scrollY } = useScroll();
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Mouse follow effect
+    const mouseX = useMotionValue(0.5);
+    const mouseY = useMotionValue(0.5);
+
+    // Mobile detection
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    const handleMouseMove = ({ currentTarget, clientX, clientY }) => {
+        let { left, top, width, height } = currentTarget.getBoundingClientRect();
+        let x = (clientX - left) / width;
+        let y = (clientY - top) / height;
+
+        mouseX.set(x);
+        mouseY.set(y);
+    };
+
     return (
-        <section id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center">
-            {/* Background Image with Enhanced Overlays */}
-            <div className="absolute inset-0 z-0">
-                {/* Multi-layered gradient overlay for depth */}
-                <div className="absolute inset-0 bg-gradient-to-br from-black via-black/80 to-black/90 z-10" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#fe564a]/20 via-transparent to-transparent z-10" />
+        <section
+            id="home"
+            ref={ref}
+            onMouseMove={handleMouseMove}
+            className="relative min-h-screen w-full overflow-hidden bg-black"
+        >
+            {/* Simple Gradient Background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950" />
 
-                <img
-                    src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2942&auto=format&fit=crop"
-                    alt="Cinematography Background"
-                    className="w-full h-full object-cover scale-105"
-                />
-            </div>
-
-            {/* Animated Background Elements */}
+            {/* Scattered Images Behind - with strong parallax */}
             <div className="absolute inset-0 z-10">
-                <motion.div
-                    animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.1, 0.2, 0.1],
-                    }}
-                    transition={{
-                        duration: 8,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }}
-                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#fe564a]/20 rounded-full blur-3xl"
-                />
-                <motion.div
-                    animate={{
-                        scale: [1, 1.3, 1],
-                        opacity: [0.1, 0.15, 0.1],
-                    }}
-                    transition={{
-                        duration: 10,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 1
-                    }}
-                    className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#FBFAFC]/10 rounded-full blur-3xl"
-                />
+                {[
+                    { src: img1, x: 12, y: 18, xMobile: 20, yMobile: 15, rotate: -15, rotateMobile: -8, scale: 0.9 },
+                    { src: img2, x: 40, y: 12, xMobile: 80, yMobile: 25, rotate: -20, rotateMobile: 6, scale: 1.1 },
+                    { src: img3, x: 72, y: 18, xMobile: 50, yMobile: 50, rotate: 15, rotateMobile: -4, scale: 0.95 },
+                    { src: img4, x: 20, y: 65, xMobile: 25, yMobile: 80, rotate: -8, rotateMobile: 10, scale: 1.05 },
+                    { src: img5, x: 65, y: 65, xMobile: 75, yMobile: 70, rotate: 8, rotateMobile: -6, scale: 1 },
+                ].map((item, index) => {
+                    // Enhanced parallax calculations - more dynamic
+                    const parallaxMultiplier = isMobile ? 40 + index * 10 : 80 + index * 20;
+                    const parallaxX = (mouseX.get() - 0.5) * parallaxMultiplier;
+                    const parallaxY = (mouseY.get() - 0.5) * parallaxMultiplier;
+
+                    // Scroll parallax - different speeds for depth
+                    const scrollParallax = useTransform(
+                        scrollY,
+                        [0, 500],
+                        [0, (index - 2) * 40] // Reduced from 50
+                    );
+
+                    return (
+                        <motion.div
+                            key={index}
+                            layoutId={`hero-img-${index}`}
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{
+                                opacity: 0.5,
+                                scale: item.scale,
+                                x: parallaxX,
+                                y: [parallaxY - 8, parallaxY + 8], // Enhanced floating ±8px
+                                rotateZ: isMobile ? [item.rotateMobile - 2, item.rotateMobile + 2] : [item.rotate - 2, item.rotate + 2],
+                            }}
+                            transition={{
+                                duration: 0.8,
+                                delay: 0.2 + index * 0.08,
+                                opacity: { duration: 1.2 },
+                                x: { type: "spring", stiffness: 40, damping: 10, mass: 0.5 },
+                                y: {
+                                    duration: 4 + index * 0.5, // 4-6.5 seconds per cycle
+                                    repeat: Infinity,
+                                    repeatType: "reverse",
+                                    ease: "easeInOut"
+                                },
+                                rotateZ: {
+                                    duration: 5 + index * 0.5, // 5-7.5 seconds per cycle
+                                    repeat: Infinity,
+                                    repeatType: "reverse",
+                                    ease: "easeInOut"
+                                },
+                            }}
+                            whileHover={{
+                                scale: item.scale * 1.05,
+                                opacity: 0.5,
+                                transition: {
+                                    type: "spring",
+                                    stiffness: 120,
+                                    damping: 10
+                                }
+                            }}
+                            className="absolute w-48 h-60 sm:w-44 sm:h-56 md:w-56 md:h-72 lg:w-72 lg:h-96 bg-zinc-900/40 sm:bg-zinc-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl cursor-pointer"
+                            style={{
+                                left: isMobile ? `${item.xMobile}%` : `${item.x}%`,
+                                top: isMobile ? `${item.yMobile}%` : `${item.y}%`,
+                                transform: 'translate(-50%, -50%)',
+                                y: scrollParallax,
+                                willChange: 'transform, opacity',
+                            }}
+                        >
+                            <img
+                                src={item.src}
+                                alt="Cinematic showcase"
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+                        </motion.div>
+                    );
+                })}
             </div>
 
-            {/* Content */}
-            <div className="relative z-20 text-center px-4 max-w-6xl mx-auto">
-                {/* Logo with glow effect */}
+            {/* Main Content - Centered Layout - On Top */}
+            <div className="relative z-20 min-h-screen flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-20 max-w-7xl mx-auto">
+
+                {/* Content */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.2 }}
-                    className="relative"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    className="flex flex-col items-center text-center space-y-6 sm:space-y-8 w-full"
                 >
-                    <div className="absolute inset-0 blur-2xl opacity-30">
-                        <img
-                            src="https://ik.imagekit.io/verticore/Untitled%20(3).png"
-                            alt="PIXELTRION Glow"
-                            className="h-24 md:h-32 lg:h-40 mx-auto mb-6 object-contain"
-                        />
+                    {/* Tagline */}
+                    <div className="overflow-hidden">
+                        <motion.div
+                            initial={{ y: "100%" }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 1, delay: 0.5, ease: [0.33, 1, 0.68, 1] }}
+                            className="flex items-center justify-center gap-2 sm:gap-4"
+                        >
+                            <div className="h-[1px] w-8 sm:w-12 md:w-16 bg-gradient-to-r from-transparent to-[#fe564a]"></div>
+                            <h2 className="text-white/90 text-[0.6rem] sm:text-xs md:text-sm uppercase tracking-[0.3em] sm:tracking-[0.5em] font-light whitespace-nowrap">
+                                Cinematography | Event Films
+                            </h2>
+                            <div className="h-[1px] w-8 sm:w-12 md:w-16 bg-gradient-to-l from-transparent to-[#fe564a]"></div>
+                        </motion.div>
                     </div>
-                    <img
-                        src="https://ik.imagekit.io/verticore/Untitled%20(3).png"
-                        alt="PIXELTRION"
-                        className="h-24 md:h-32 lg:h-40 mx-auto mb-8 object-contain relative z-10"
-                    />
-                </motion.div>
 
-                {/* Tagline with elegant styling */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="mb-6"
-                >
-                    <div className="flex items-center justify-center gap-4 mb-6">
-                        <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#fe564a]"></div>
-                        <h2 className="text-[#FBFAFC]/90 text-xs md:text-sm uppercase tracking-[0.4em] font-light">
-                            Cinematography | Event Films | Wedding Stories
-                        </h2>
-                        <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#fe564a]"></div>
-                    </div>
-                </motion.div>
-
-                {/* Description with premium typography */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
-                >
-                    <p className="text-[#FBFAFC]/80 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed mb-12">
-                        High-impact visuals for weddings, festivals, celebrations, and lifestyle events.
-                        <span className="block mt-2 text-[#fe564a] text-sm md:text-base font-normal">
-                            Crafting cinematic stories that last forever
-                        </span>
-                    </p>
-                </motion.div>
-
-                {/* CTA Button with enhanced styling */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.9 }}
-                    className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-                >
-                    <a
-                        href="#portfolio"
-                        className="group relative px-10 py-4 bg-gradient-to-r from-[#fe564a] to-[#ff7a66] text-white overflow-hidden transition-all duration-300 uppercase tracking-widest text-sm font-semibold hover:shadow-2xl hover:shadow-[#fe564a]/50 hover:scale-105"
+                    {/* Main Heading with Gradient */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.8 }}
+                        className="max-w-4xl px-2 sm:px-4"
                     >
-                        <span className="relative z-10">View Portfolio</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#ff7a66] to-[#fe564a] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </a>
-                    <a
-                        href="#contact"
-                        className="px-10 py-4 border-2 border-[#FBFAFC]/30 text-[#FBFAFC] hover:border-[#FBFAFC] hover:bg-[#FBFAFC]/10 backdrop-blur-sm transition-all duration-300 uppercase tracking-widest text-sm font-semibold"
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-light text-white mb-4 sm:mb-6 tracking-wide leading-tight">
+                            Capture the{" "}
+                            <span className="font-serif italic bg-gradient-to-r from-[#fe564a] via-[#ff8a80] to-[#fe564a] bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+                                Moment
+                            </span>
+                        </h1>
+                        <p className="text-white/70 text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed px-4 sm:px-0">
+                            Crafting cinematic stories that transcend time.
+                        </p>
+                    </motion.div>
+
+                    {/* CTA Buttons with Glassmorphism */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 1.2 }}
+                        className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0"
                     >
-                        Get in Touch
-                    </a>
+                        <motion.a
+                            href="#portfolio"
+                            whileHover={{ scale: 1.05, x: 5 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="group relative px-8 py-4 bg-[#fe564a] text-white overflow-hidden transition-all duration-500 uppercase tracking-widest text-xs font-bold rounded-lg hover:shadow-[0_0_40px_rgba(254,86,74,0.5)] flex items-center justify-center gap-2"
+                        >
+                            <span className="relative z-10 group-hover:tracking-[0.2em] transition-all duration-300">View Portfolio</span>
+                            <motion.span
+                                className="text-lg"
+                                animate={{ x: [0, 5, 0] }}
+                                transition={{ duration: 1.5, repeat: Infinity }}
+                            >
+                                →
+                            </motion.span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                        </motion.a>
+
+                        <motion.a
+                            href="#contact"
+                            whileHover={{ scale: 1.05, x: 5 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="group px-8 py-4 border-2 border-white/50 text-white hover:border-white hover:bg-white/10 transition-all duration-300 uppercase tracking-widest text-xs font-bold backdrop-blur-md bg-white/5 rounded-lg flex items-center justify-center gap-2"
+                        >
+                            <span className="relative z-10">Get in Touch</span>
+                            <motion.span
+                                className="text-lg"
+                                animate={{ x: [0, 5, 0] }}
+                                transition={{ duration: 1.5, repeat: Infinity }}
+                            >
+                                →
+                            </motion.span>
+                        </motion.a>
+                    </motion.div>
                 </motion.div>
             </div>
 
-            {/* Elegant Scroll Indicator */}
+            {/* Scroll Indicator - Centered */}
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 1 }}
-                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+                className="absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 z-30"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
-                <motion.div
-                    animate={{ y: [0, 8, 0] }}
-                    transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }}
-                    className="w-[2px] h-12 bg-gradient-to-b from-[#fe564a] via-[#fe564a]/50 to-transparent"
-                />
-                <span className="text-[#FBFAFC]/50 text-xs uppercase tracking-widest">Scroll</span>
+                <div className="w-[1px] h-12 sm:h-16 bg-gradient-to-b from-[#fe564a] to-transparent mx-auto mb-2"></div>
+                <span className="text-white/30 text-[0.55rem] sm:text-[0.625rem] uppercase tracking-[0.3em] sm:tracking-[0.35em]">Scroll</span>
             </motion.div>
+
+            {/* Add CSS for gradient animation */}
+            <style jsx>{`
+                @keyframes gradient {
+                    0%, 100% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                }
+                .animate-gradient {
+                    animation: gradient 3s ease infinite;
+                }
+            `}</style>
         </section>
     );
 };
