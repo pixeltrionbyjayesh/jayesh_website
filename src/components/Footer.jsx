@@ -60,7 +60,7 @@ const Footer = () => {
                 </div>
 
                 <p className="text-zinc-500 text-sm">
-                    &copy; {new Date().getFullYear()} VERTICORE. All rights reserved.
+                    &copy; {new Date().getFullYear()} Pixeltrion. All rights reserved.
                 </p>
                 <p className="text-zinc-600 text-xs mt-2 uppercase tracking-widest">
                     Cinematography | Editing | Storytelling

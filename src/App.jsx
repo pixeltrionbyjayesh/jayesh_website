@@ -1,30 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Services from './components/Services';
-import Portfolio from './components/Portfolio';
-
-import Testimonials from './components/Testimonials';
-import Gear from './components/Gear';
-import Packages from './components/Packages';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import { client } from './appwrite';
 
 function App() {
+  useEffect(() => {
+    // Ping the Appwrite backend server to verify the setup
+    client.ping()
+      .then(() => console.log('Successfully connected to Appwrite!'))
+      .catch(console.error);
+  }, []);
   return (
-    <div className="bg-black min-h-screen text-white">
+    <div className="bg-[#0f0f11] min-h-screen text-white w-full">
       <Navbar />
-      <Hero />
-      <About />
-      <Portfolio />
-      <Gear />
-      <Services />
-
-      <Testimonials />
-      <Packages />
-      <Contact />
-      <Footer />
+      <HomePage />
     </div>
   );
 }

@@ -41,10 +41,10 @@ const Packages = () => {
                     viewport={{ once: true }}
                     className="text-center mb-12"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">Packages</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wider">Investments</h2>
                     <div className="w-20 h-1 bg-gradient-to-r from-[#fe564a] to-[#ff8a7a] mx-auto mb-4"></div>
                     <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-                        Flexible packages designed to fit your needs and budget
+                        Curated experiences tailored to your vision.
                     </p>
 
                     <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -53,8 +53,8 @@ const Packages = () => {
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
                                 className={`px-6 py-2.5 text-sm uppercase tracking-wider border-2 transition-all duration-300 ${activeCategory === cat
-                                        ? 'bg-gradient-to-r from-[#fe564a] to-[#ff7a66] text-white border-[#fe564a] shadow-lg shadow-[#fe564a]/30'
-                                        : 'bg-transparent text-[#FBFAFC]/60 border-zinc-700 hover:border-[#fe564a] hover:text-[#FBFAFC]'
+                                    ? 'bg-gradient-to-r from-[#fe564a] to-[#ff7a66] text-white border-[#fe564a] shadow-lg shadow-[#fe564a]/30'
+                                    : 'bg-transparent text-[#FBFAFC]/60 border-zinc-700 hover:border-[#fe564a] hover:text-[#FBFAFC]'
                                     }`}
                             >
                                 {cat}
