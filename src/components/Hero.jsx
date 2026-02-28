@@ -77,7 +77,7 @@ const Hero = () => {
                                     initial={{ opacity: 0, y: 60 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 1, delay: 0.2 + index * 0.15, ease: [0.25, 1, 0.5, 1] }}
-                                    whileHover={{ y: yOffset - 15, zIndex: 50, scale: 1.05, transition: { duration: 0.4, ease: "easeOut" } }}
+                                    whileHover={{ y: -15, zIndex: 50, scale: 1.05, transition: { duration: 0.3, ease: "easeOut" } }}
                                     className={`relative w-[32%] sm:w-[28%] md:w-1/4 max-w-[280px] aspect-[3/4] rounded-lg sm:rounded-2xl overflow-hidden shadow-2xl border-[3px] sm:border-4 md:border-8 border-[#0f0f11] bg-zinc-900 group cursor-pointer transform-gpu will-change-transform ${index === 0 ? '' : '-ml-[12%] sm:-ml-[8%]'}`}
                                     style={{
                                         rotate: `${rotation}deg`,
