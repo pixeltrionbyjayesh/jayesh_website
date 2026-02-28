@@ -1,0 +1,8 @@
+{
+    "projectId": "69a31a4c002449fcc03c",
+    "projectName": "Pixeltrion",
+    "settings": {
+        "commands": "npm install && npm run build",
+        "outputDirectory": "dist"
+    }
+}
