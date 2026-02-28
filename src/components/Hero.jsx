@@ -78,7 +78,7 @@ const Hero = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 1, delay: 0.2 + index * 0.15, ease: [0.25, 1, 0.5, 1] }}
                                     whileHover={{ y: yOffset - 15, zIndex: 50, scale: 1.05, transition: { duration: 0.4, ease: "easeOut" } }}
-                                    className="relative w-1/4 max-w-[280px] aspect-[3/4] rounded-lg sm:rounded-2xl overflow-hidden shadow-2xl border-4 md:border-8 border-[#0f0f11] bg-zinc-900 group cursor-pointer"
+                                    className="relative w-1/4 max-w-[280px] aspect-[3/4] rounded-lg sm:rounded-2xl overflow-hidden shadow-2xl border-4 md:border-8 border-[#0f0f11] bg-zinc-900 group cursor-pointer transform-gpu will-change-transform"
                                     style={{
                                         rotate: `${rotation}deg`,
                                         top: `${yOffset}px`,
@@ -89,7 +89,7 @@ const Hero = () => {
                                     <img
                                         src={src}
                                         alt={`Portfolio ${index + 1}`}
-                                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                        className="w-full h-full object-cover transform-gpu"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></div>
                                 </motion.div>

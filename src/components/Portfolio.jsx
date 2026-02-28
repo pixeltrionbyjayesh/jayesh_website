@@ -17,8 +17,6 @@ const portfolioItems = [
     { id: 1, category: "Automotive", title: "Automotive 1", aspectRatio: "9/16", video: getVideo("scram_440 (360p).mp4") },
     { id: 2, category: "Automotive", title: "Automotive 2", aspectRatio: "9/16", video: getVideo("scram_440_information_video (360p).mp4") },
     { id: 3, category: "Automotive", title: "Automotive 3", aspectRatio: "9/16", video: getVideo("palladium_video_in_marathi-_2_v1 (360p).mp4") },
-    { id: 4, category: "Food", title: "Food 3", aspectRatio: "9/16", video: getVideo("stopmotion_v1 (360p).mp4") },
-    { id: 5, category: "Food", title: "Food 4", aspectRatio: "9/16", video: getVideo("making_video_- (360p).mp4") },
     { id: 6, category: "Automotive", title: "Automotive 6", aspectRatio: "9/16", video: getVideo("custmore_video_for_instagram_v1 (360p).mp4") },
     { id: 15, category: "Automotive", title: "Automotive 7", aspectRatio: "9/16", video: getVideo("beer_song_video_classic_goan_2_v1 (360p).mp4") },
     { id: 19, category: "Automotive", title: "Automotive 8", aspectRatio: "9/16", video: getVideo("daya_sir- (360p).mp4") },
@@ -46,9 +44,6 @@ const portfolioItems = [
     { id: 16, category: "Wedding Films", title: "Wedding 2", aspectRatio: "9/16", video: getVideo("choudriya_video_final_cc_v1 (360p).mp4") },
     { id: 20, category: "Wedding Films", title: "Wedding 6", aspectRatio: "9/16", video: getVideo("harsh_joshy_reel_for_my_website_1(1)_v1 (360p).mp4") },
     { id: 21, category: "Wedding Films", title: "Wedding 7", aspectRatio: "9/16", video: getVideo("harsh_joshy_reel_for_my_website_2(1)_v1 (360p).mp4") },
-    { id: 25, category: "Wedding Films", title: "Wedding 11", aspectRatio: "9/16", video: getVideo("trending_song_video-_v1 (360p).mp4") },
-    { id: 26, category: "Wedding Films", title: "Wedding 12", aspectRatio: "9/16", video: getVideo("yogita_didi_reel_2_for_my_website_v1 (360p).mp4") },
-    { id: 27, category: "Wedding Films", title: "Wedding 13", aspectRatio: "9/16", video: getVideo("zat_pat_pata_pat_final (360p).mp4") },
     { id: 25, category: "Wedding Films", title: "Wedding 11", aspectRatio: "9/16", video: getVideo("trending_song_video-_v1 (360p).mp4") },
     { id: 26, category: "Wedding Films", title: "Wedding 12", aspectRatio: "9/16", video: getVideo("yogita_didi_reel_2_for_my_website_v1 (360p).mp4") },
     { id: 27, category: "Wedding Films", title: "Wedding 13", aspectRatio: "9/16", video: getVideo("zat_pat_pata_pat_final (360p).mp4") }
